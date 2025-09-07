@@ -111,6 +111,6 @@ public class IdleBattleView : MonoBehaviour
 		}
 
 		int currentIndex = characters.FindIndex(c => c.InstanceId == character.InstanceId);
-		characterCountText.SetText($"{currentIndex}/{characters.Count}");
+		characterCountText.SetText($"{currentIndex + 1}/{characters.Count}");
 	}
 }
