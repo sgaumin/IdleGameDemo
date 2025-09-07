@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d5283b8d2993844f88551e99c17436c, type: 3}
+  m_Name: DefaultGacha
+  m_EditorClassIdentifier: 
+  costPerPull: 500
+  itemsPerPull: 3
+  rarityWeights:
+  - rarity: 0
+    weight: 30
+  - rarity: 1
+    weight: 15
+  - rarity: 2
+    weight: 8
+  - rarity: 3
+    weight: 2
+  - rarity: 4
+    weight: 1
+  packages:
+  - {fileID: 11400000, guid: eeb0745e08779eb478fe94190988adf8, type: 2}
+  - {fileID: 11400000, guid: e219c48a70b227b4ea1d1a648a730c3a, type: 2}
+  - {fileID: 11400000, guid: 294fef725896a504f9d62b6cda718b9e, type: 2}
+  - {fileID: 11400000, guid: f27fe2fd2985f0d42b583f2a11cfd90b, type: 2}
+  - {fileID: 11400000, guid: 6ac1e256be4b9824dab5042a62f68297, type: 2}
+  - {fileID: 11400000, guid: 0b0357990590afc44a1cc1d4be3bf96b, type: 2}
+  - {fileID: 11400000, guid: ca5c65f14c9cd9144b46c542647f8aa8, type: 2}
