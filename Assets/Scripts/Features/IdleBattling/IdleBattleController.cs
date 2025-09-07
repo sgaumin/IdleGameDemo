@@ -34,7 +34,7 @@ public class IdleBattleController : MonoBehaviour
 		view.Initialize(this, LevelUpCharacter, LoadPreviousCharacter, LoadNextCharacter);
 
 		LoadCharacter();
-		ComputeIdleRewards();
+		ComputeIdleAwayRewards();
 	}
 
 	private void Update()
@@ -65,19 +65,18 @@ public class IdleBattleController : MonoBehaviour
 		OnCharacterChanged?.Invoke(character, catalogCharacter);
 	}
 
-	private void ComputeIdleRewards()
+	private void ComputeIdleAwayRewards()
 	{
-		if (saveSystem.HasKey(CLOSING_TIME))
+		if (!saveSystem.HasKey(CLOSING_TIME)) return;
+
+		DateTime closingTime = saveSystem.Load<DateTime>(CLOSING_TIME);
+		TimeSpan elapsed = DateTime.Now - closingTime;
+		int rewardCycles = (int)(elapsed.TotalSeconds / GetAttackSpeed());
+		if (rewardCycles > 0)
 		{
-			DateTime closingTime = saveSystem.Load<DateTime>(CLOSING_TIME);
-			TimeSpan elapsed = DateTime.Now - closingTime;
-			int rewardCycles = (int)(elapsed.TotalSeconds / GetAttackSpeed());
-			if (rewardCycles > 0)
-			{
-				int totalReward = rewardCycles * GetRewardMultiplier();
-				inventory.AddItem(CurrencyType.Silver.ToString(), totalReward);
-				logger.Log($"{nameof(IdleBattleController)}: <color=green>Granted {totalReward} Silver for {rewardCycles} reward cycles during offline time of {elapsed.TotalMinutes:F2} minutes.</color>");
-			}
+			int totalReward = rewardCycles * GetRewardMultiplier();
+			inventory.AddItem(CurrencyType.Silver.ToString(), totalReward);
+			logger.Log($"{nameof(IdleBattleController)}: <color=green>Granted {totalReward} Silver for {rewardCycles} reward cycles during offline time of {elapsed.Hours}h {elapsed.Minutes}m {elapsed.Seconds}s.</color>");
 		}
 	}
 
