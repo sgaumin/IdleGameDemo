@@ -131,9 +131,14 @@ public class IdleBattleController : MonoBehaviour
 		int index = (currentIndex + direction + characters.Count) % characters.Count;
 		character = (InventoryCharacterItem)characters[index];
 		model.CharacterInstanceId = character.InstanceId;
+
 		saveSystem.Save(SAVE_KEY, model);
 		catalogCharacter = (CatalogCharacterItem)catalog.GetItemById(character.Id);
+
+		elapsedTime = 0f;
 		OnCharacterChanged?.Invoke(character, catalogCharacter);
+
+		logger.Log($"{nameof(IdleBattleController)}: <color=yellow>Loaded character {character.Id} (Instance ID: {character.InstanceId})</color>");
 	}
 
 	private void OnDestroy()
